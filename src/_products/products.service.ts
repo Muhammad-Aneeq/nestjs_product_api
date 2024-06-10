@@ -14,6 +14,7 @@ export class ProductsService {
 
   async createProduct({ userId, ...createPostDto }: CreateProductDto) {
     const findUser = await this.userModel.findById(userId);
+
     if (!findUser) throw new HttpException('User Not Found', 404);
     const newProduct = new this.productModel({
       ...createPostDto,
